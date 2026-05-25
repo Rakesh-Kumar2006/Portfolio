@@ -1,0 +1,142 @@
+{
+  "name": "Rakesh Kumar Mahto",
+
+  "title": "BCA Student & Web Developer",
+
+  "description": "I am a Third Year BCA student with a deep passion for web development. I am constantly exploring the latest technologies to build engaging and responsive websites. Currently having strong skills in PHP, MySQL, HTML, CSS, Bootstrap and JavaScript.",
+
+  "typingTexts": [
+    "BCA Student",
+    "Web Developer",
+    "PHP Developer",
+    "Frontend Developer"
+  ],
+
+  "skills": [
+
+    {
+      "name": "PHP",
+      "percentage": 90
+    },
+
+    {
+      "name": "MySQL",
+      "percentage": 85
+    },
+
+    {
+      "name": "Bootstrap",
+      "percentage": 92
+    },
+
+    {
+      "name": "CSS3",
+      "percentage": 95
+    },
+
+    {
+      "name": "Tailwind CSS",
+      "percentage": 60
+    }
+
+  ],
+
+  "expertise": [
+
+    {
+      "title": "HTML5",
+
+      "icon": "bi-filetype-html",
+
+      "description": "Semantic and SEO friendly website structure."
+    },
+
+    {
+      "title": "CSS3",
+
+      "icon": "bi-filetype-css",
+
+      "description": "Modern responsive UI and beautiful animations."
+    },
+
+    {
+      "title": "Bootstrap 5",
+
+      "icon": "bi-bootstrap",
+
+      "description": "Fast responsive layouts for all devices."
+    },
+
+    {
+      "title": "JavaScript",
+
+      "icon": "bi-filetype-js",
+
+      "description": "Interactive and dynamic frontend development."
+    },
+
+    {
+      "title": "PHP",
+
+      "icon": "bi-filetype-php",
+
+      "description": "Backend development using PHP."
+    },
+
+    {
+      "title": "MySQL",
+
+      "icon": "bi-database",
+
+      "description": "Database management and SQL queries."
+    }
+
+  ],
+
+  "projects": [
+
+    {
+      "title": "Portfolio Website",
+
+      "image": "assets/images/portfolio.png",
+
+      "link": "https://github.com/"
+    },
+
+    {
+      "title": "A-1 Tailor Website",
+
+      "image": "assets/images/A1-Tailor.png",
+
+      "link": "https://github.com/Rakesh-Kumar2006/A1-Tailor"
+    },
+
+    {
+      "title": "QuickBite Website",
+
+      "image": "assets/images/quickbite.png",
+
+      "link": "https://github.com/Rakesh-Kumar2006/quickbites"
+    }
+
+  ],
+
+  "socialLinks": {
+
+    "github": "https://github.com/",
+
+    "linkedin": "https://linkedin.com/",
+
+    "instagram": "https://instagram.com/"
+  },
+
+  "contact": {
+
+    "email": "mahtorakeshkumar926@gmail.com",
+
+    "phone": "+91 9876543210",
+
+    "location": "Jamnagar, Gujarat, India"
+  }
+
+}
