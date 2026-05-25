@@ -107,14 +107,14 @@ body {
 
 .custom-nav {
   background: rgba(255, 255, 255, 0.08);
-
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Added for Safari support */
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
   padding: 15px 0;
-
   transition: 0.4s;
+  
+  z-index: 1030; /* Ensures the navbar stays securely on top of other content */
 }
 
 .navbar-brand {
@@ -124,11 +124,8 @@ body {
 
 .nav-link {
   color: white !important;
-
   margin-left: 15px;
-
   font-size: 17px;
-
   transition: 0.3s;
 }
 
@@ -165,6 +162,7 @@ body {
 
 .hero-section {
   position: relative;
+  padding-top: 120px; /* Pushes your content down below the blurred navbar */
 }
 
 .hero-title {
@@ -255,6 +253,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* Added for Safari support */
 
   border-radius: 20px;
 
