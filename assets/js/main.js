@@ -552,3 +552,23 @@ navItems.forEach((item) => {
   });
 
 });
+
+// Gmail fallback for mobile
+
+const emailBtn = document.querySelector(".custom-btn");
+
+emailBtn.addEventListener("click", function () {
+
+  const isMobile =
+    /Android|iPhone|iPad|iPod/i.test(
+      navigator.userAgent
+    );
+
+  if (isMobile) {
+
+    window.location.href =
+      "mailto:yourmail@example.com?subject=Portfolio Inquiry&body=Hello Rakesh,%0A%0AI want to connect with you.";
+
+  }
+
+});
