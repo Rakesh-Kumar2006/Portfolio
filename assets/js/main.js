@@ -553,21 +553,39 @@ navItems.forEach((item) => {
 
 });
 
-// Gmail fallback for mobile
+// ===============================
+// EMAIL BUTTON
+// ===============================
 
-const emailBtn = document.querySelector(".custom-btn");
+const emailBtn =
+  document.getElementById("emailBtn");
 
-emailBtn.addEventListener("click", function () {
+emailBtn.addEventListener("click", function (e) {
+
+  e.preventDefault();
 
   const isMobile =
     /Android|iPhone|iPad|iPod/i.test(
       navigator.userAgent
     );
 
+  // Mobile → Open Mail App
+
   if (isMobile) {
 
     window.location.href =
       "mailto:yourmail@example.com?subject=Portfolio Inquiry&body=Hello Rakesh,%0A%0AI want to connect with you.";
+
+  }
+
+  // Laptop/Desktop → Open Gmail in Browser
+
+  else {
+
+    window.open(
+      "https://mail.google.com/mail/?view=cm&fs=1&to=yourmail@example.com&su=Portfolio%20Inquiry&body=Hello%20Rakesh,%0A%0AI%20want%20to%20connect%20with%20you.",
+      "_blank"
+    );
 
   }
 
