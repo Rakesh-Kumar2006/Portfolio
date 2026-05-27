@@ -96,6 +96,14 @@
   "projects": [
 
     {
+      "title": "Resume",
+
+      "image": "assets/images/resume.png",
+
+      "link": "https://github.com/Rakesh-Kumar2006/Resume"
+    },
+
+    {
       "title": "Portfolio Website",
 
       "image": "assets/images/portfolio.png",

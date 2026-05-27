@@ -574,7 +574,7 @@ emailBtn.addEventListener("click", function (e) {
   if (isMobile) {
 
     window.location.href =
-      "mailto:yourmail@example.com?subject=Portfolio Inquiry&body=Hello Rakesh,%0A%0AI want to connect with you.";
+      "mailto:mahtorakeshkumar926@gmail.com?subject=Portfolio Inquiry&body=Hello Rakesh,%0A%0AI want to connect with you.";
 
   }
 
