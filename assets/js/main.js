@@ -213,13 +213,33 @@ function loadProjects(projects) {
 
             <h4>${project.title}</h4>
 
+            <!-- GitHub Button -->
+
             <a
               href="${project.link}"
               target="_blank"
-              class="btn btn-primary custom-btn mt-3"
+              class="btn btn-primary custom-btn mt-3 me-2"
             >
-              View Project
+              <i class="bi bi-github me-2"></i>
+              GitHub
             </a>
+
+            <!-- Live Website Button -->
+
+            ${
+              project.live
+                ? `
+            <a
+              href="${project.live}"
+              target="_blank"
+              class="btn btn-success custom-btn mt-3"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>
+              Live Demo
+            </a>
+            `
+                : ""
+            }
 
           </div>
 

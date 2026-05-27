@@ -95,39 +95,34 @@
 
   "projects": [
 
-    {
-      "title": "Resume",
+  {
+    "title": "Resume",
+    "image": "assets/images/resume.png",
+    "link": "https://github.com/Rakesh-Kumar2006/Resume",
+    "live": "https://rakeshk-resume.vercel.app/"
+  },
 
-      "image": "assets/images/resume.png",
+  {
+    "title": "Portfolio Website",
+    "image": "assets/images/portfolio.png",
+    "link": "https://github.com/Rakesh-Kumar2006/Portfolio",
+    "live": "https://rakeshk-portfolio.vercel.app/"
+  },
 
-      "link": "https://github.com/Rakesh-Kumar2006/Resume"
-    },
+  {
+    "title": "A-1 Tailor Website",
+    "image": "assets/images/A1-Tailor.png",
+    "link": "https://github.com/Rakesh-Kumar2006/A1-Tailor",
+    "live": "https://a1-tailor.vercel.app/index.html"
+  },
 
-    {
-      "title": "Portfolio Website",
+  {
+    "title": "QuickBite Website",
+    "image": "assets/images/quickbite.png",
+    "link": "https://github.com/Rakesh-Kumar2006/quickbites"
+  }
 
-      "image": "assets/images/portfolio.png",
-
-      "link": "https://github.com/Rakesh-Kumar2006/Portfolio"
-    },
-
-    {
-      "title": "A-1 Tailor Website",
-
-      "image": "assets/images/A1-Tailor.png",
-
-      "link": "https://github.com/Rakesh-Kumar2006/A1-Tailor"
-    },
-
-    {
-      "title": "QuickBite Website",
-
-      "image": "assets/images/quickbite.png",
-
-      "link": "https://github.com/Rakesh-Kumar2006/quickbites"
-    }
-
-  ],
+],
 
   "socialLinks": {
 
