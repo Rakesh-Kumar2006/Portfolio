@@ -120,6 +120,12 @@
     "title": "QuickBite Website",
     "image": "assets/images/quickbite.png",
     "link": "https://github.com/Rakesh-Kumar2006/quickbites"
+  },
+
+  {
+    "title": "QuickBite Smart Invoice Management",
+    "image": "assets/images/invoice.png",
+    "link": "https://github.com/Rakesh-Kumar2006/Invoice"
   }
 
 ],
