@@ -125,7 +125,8 @@
   {
     "title": "QuickBite Smart Invoice Management",
     "image": "assets/images/invoice.png",
-    "link": "https://github.com/Rakesh-Kumar2006/Invoice"
+    "link": "https://github.com/Rakesh-Kumar2006/Invoice-frontend",
+    "live": "https://invoice-frontend-lemon.vercel.app/"
   }
 
 ],
