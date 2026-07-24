@@ -243,7 +243,7 @@ function loadProjects(projects) {
     output += `
 
       <div
-        class="col-md-6 col-lg-4"
+        class="col-md-6 col-lg-4 project-card"
         data-aos="zoom-in"
         data-aos-delay="${index * 100}"
       >

@@ -602,3 +602,27 @@ footer {
   }
 
 }
+
+@media print {
+
+  #projects {
+    page-break-before: always;
+  }
+
+  #projectContainer {
+    display: block !important;
+  }
+
+  .project-card {
+    width: 100% !important;
+    margin-bottom: 25px !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .project-card .glass-card {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+}
