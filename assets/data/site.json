@@ -3,7 +3,7 @@
 
   "title": "BCA Student & Web Developer",
 
-  "description": "I am a Third Year BCA student with a deep passion for web development. I am constantly exploring the latest technologies to build engaging and responsive websites. Currently having strong skills in PHP, MySQL, HTML, CSS, Bootstrap and JavaScript.",
+  "description": "Hi, I'm Rakesh Kumar Mahto, a third-year BCA student and passionate Web Developer from India. I specialize in HTML, CSS, Bootstrap, JavaScript, PHP and MySQL. I enjoy building responsive websites and modern web applications.  ",
 
   "typingTexts": [
     "BCA Student",
@@ -12,34 +12,31 @@
     "Frontend Developer"
   ],
 
-  "skills": [
+  "skills": {
 
-    {
-      "name": "PHP",
-      "percentage": 90
-    },
-
-    {
-      "name": "MySQL",
-      "percentage": 85
-    },
-
-    {
-      "name": "Bootstrap",
-      "percentage": 92
-    },
-
-    {
-      "name": "CSS3",
-      "percentage": 95
-    },
-
-    {
-      "name": "Tailwind CSS",
-      "percentage": 60
-    }
-
+  "frontend": [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "React JS"
   ],
+
+  "frameworks": [
+    "Bootstrap 5",
+    "Tailwind CSS",
+    "Next.js"
+  ],
+
+  "backend": [
+    "PHP"
+  ],
+
+  "database": [
+    "MySQL",
+    "MongoDB"
+  ]
+
+},
 
   "expertise": [
 
@@ -144,7 +141,7 @@
 
     "email": "mahtorakeshkumar926@gmail.com",
 
-    "phone": "+91 9876543210",
+    "phone": "+91 9409433664",
 
     "location": "Jamnagar, Gujarat, India"
   }

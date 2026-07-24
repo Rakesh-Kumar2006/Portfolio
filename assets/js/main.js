@@ -23,17 +23,29 @@ fetch("assets/data/site.json")
 
     startTypingEffect(data.typingTexts);
 
-    // ===============================
-    // CONTACT SECTION
-    // ===============================
+// ===============================
+// CONTACT SECTION
+// ===============================
 
-    document.getElementById("contactEmail").innerHTML =
-      `
-      <i class="bi bi-envelope-fill"></i>
-      ${data.contact.email}
-      `;
+document.getElementById("contactEmail").innerHTML =
+  `
+  <i class="bi bi-envelope-fill"></i>
+  ${data.contact.email}
+  `;
 
-      document.getElementById("contactlocation").innerHTML =
+
+// Phone Number
+
+document.getElementById("contactPhone").innerHTML =
+  `
+  <i class="bi bi-telephone-fill"></i>
+  ${data.contact.phone}
+  `;
+
+
+// Location
+
+document.getElementById("contactlocation").innerHTML =
   `
   <i class="bi bi-geo-alt-fill"></i>
   ${data.contact.location}
@@ -142,32 +154,61 @@ function loadSkills(skills) {
 
   let output = "";
 
-  skills.forEach((skill, index) => {
+  const skillCategories = {
+
+    frontend: {
+      title: "Frontend",
+      icon: "bi-code-slash"
+    },
+
+    frameworks: {
+      title: "Frameworks",
+      icon: "bi-bootstrap"
+    },
+
+    backend: {
+      title: "Backend",
+      icon: "bi-server"
+    },
+
+    database: {
+      title: "Database",
+      icon: "bi-database"
+    }
+
+  };
+
+  Object.keys(skills).forEach(category => {
 
     output += `
 
-      <div
-        class="mb-4"
-        data-aos="fade-up"
-        data-aos-delay="${index * 100}"
-      >
+      <div class="col-md-6">
 
-        <div
-          class="d-flex justify-content-between mb-2"
-        >
+        <div class="skill-box">
 
-          <h5>${skill.name}</h5>
+          <div class="skill-heading">
 
-          <span>${skill.percentage}%</span>
+            <i class="bi ${skillCategories[category].icon}"></i>
 
-        </div>
+            <h4>
+              ${skillCategories[category].title}
+            </h4>
 
-        <div class="progress custom-progress">
+          </div>
 
-          <div
-            class="progress-bar custom-progress-bar"
-            style="width: ${skill.percentage}%"
-          ></div>
+          <div class="skill-tags">
+
+            ${skills[category].map(skill => `
+
+              <span class="skill-tag">
+
+                ${skill}
+
+              </span>
+
+            `).join("")}
+
+          </div>
 
         </div>
 
@@ -177,9 +218,15 @@ function loadSkills(skills) {
 
   });
 
-  document.getElementById(
-    "skillsContainer"
-  ).innerHTML = output;
+  document.getElementById("skillsContainer").innerHTML = `
+
+    <div class="row g-4">
+
+      ${output}
+
+    </div>
+
+  `;
 
 }
 
