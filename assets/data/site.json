@@ -120,10 +120,16 @@
   },
 
   {
-    "title": "QuickBite Smart Invoice Management",
+    "title": "Smart Invoice Management",
     "image": "assets/images/invoice.png",
     "link": "https://github.com/Rakesh-Kumar2006/Invoice-frontend",
     "live": "https://invoice-frontend-lemon.vercel.app/"
+  },
+
+  {
+    "title": "Freshify Website",
+    "image": "assets/images/Freshify.png",
+    "link": "https://github.com/Rakesh-Kumar2006/Freshify"
   }
 
 ],
