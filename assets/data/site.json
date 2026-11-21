@@ -1,155 +1,179 @@
 {
   "name": "Rakesh Kumar Mahto",
-
+  "shortName": "Rakesh Kumar",
+  "initials": "RK",
   "title": "BCA Student & Web Developer",
-
-  "description": "Hi, I'm Rakesh Kumar Mahto, a third-year BCA student and passionate Web Developer from India. I specialize in HTML, CSS, Bootstrap, JavaScript, PHP and MySQL. I enjoy building responsive websites and modern web applications.  ",
-
-  "typingTexts": [
-    "BCA Student",
-    "Web Developer",
-    "PHP Developer",
-    "Frontend Developer"
-  ],
-
-  "skills": {
-
-  "frontend": [
-    "HTML5",
-    "CSS3",
-    "JavaScript",
-    "React JS"
-  ],
-
-  "frameworks": [
-    "Bootstrap 5",
-    "Tailwind CSS",
-    "Next.js"
-  ],
-
-  "backend": [
-    "PHP"
-  ],
-
-  "database": [
-    "MySQL",
-    "MongoDB"
-  ]
-
-},
-
+  "availability": "Available for select projects",
+  "description": "I'm Rakesh, a third-year BCA student and web developer from India creating responsive websites and modern full-stack web applications where clarity, craft, and purpose meet.",
   "expertise": [
-
     {
-      "title": "HTML5",
-
-      "icon": "bi-filetype-html",
-
-      "description": "Semantic and SEO friendly website structure."
+      "title": "Frontend Development",
+      "icon": "bi-code-slash",
+      "description": "I build fast, accessible, responsive interfaces with HTML5, CSS3, JavaScript, React, and Bootstrap 5."
     },
-
     {
-      "title": "CSS3",
-
-      "icon": "bi-filetype-css",
-
-      "description": "Modern responsive UI and beautiful animations."
-    },
-
-    {
-      "title": "Bootstrap 5",
-
-      "icon": "bi-bootstrap",
-
-      "description": "Fast responsive layouts for all devices."
-    },
-
-    {
-      "title": "JavaScript",
-
-      "icon": "bi-filetype-js",
-
-      "description": "Interactive and dynamic frontend development."
-    },
-
-    {
-      "title": "PHP",
-
-      "icon": "bi-filetype-php",
-
-      "description": "Backend development using PHP."
-    },
-
-    {
-      "title": "MySQL",
-
+      "title": "Backend & Databases",
       "icon": "bi-database",
-
-      "description": "Database management and SQL queries."
+      "description": "I develop reliable server-side logic and structured databases using PHP, Node.js, MySQL, and MongoDB."
+    },
+    {
+      "title": "UI & Responsive Design",
+      "icon": "bi-layers",
+      "description": "I turn requirements into clean, SEO-friendly layouts that look sharp across desktop, tablet, and mobile."
     }
-
   ],
-
+  "skills": {
+    "frontend": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "React JS"
+    ],
+    "frameworks": [
+      "Bootstrap 5",
+      "Tailwind CSS",
+      "Next.js"
+    ],
+    "backend": [
+      "PHP",
+      "Node.js",
+      "REST APIs"
+    ],
+    "database": [
+      "MySQL",
+      "MongoDB"
+    ]
+  },
+  "tools": [
+    {
+      "category": "Build & ship",
+      "items": [
+        {
+          "name": "VS Code",
+          "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"
+        },
+        {
+          "name": "Visual Studio",
+          "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-original.svg"
+        },
+        {
+          "name": "GitHub",
+          "logo": "https://cdn.simpleicons.org/github/0f172a",
+          "invertDark": true
+        },
+        {
+          "name": "Vercel",
+          "logo": "https://cdn.simpleicons.org/vercel/0f172a",
+          "invertDark": true
+        }
+      ]
+    },
+    {
+      "category": "Design & UI",
+      "items": [
+        {
+          "name": "Figma",
+          "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
+        },
+        {
+          "name": "Canva",
+          "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg"
+        },
+        {
+          "name": "Bootstrap",
+          "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg"
+        },
+        {
+          "name": "Tailwind",
+          "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
+        }
+      ]
+    },
+    {
+      "category": "Server & data",
+      "items": [
+        {
+          "name": "XAMPP",
+          "logo": "https://cdn.simpleicons.org/xampp/FB7A24"
+        },
+        {
+          "name": "MySQL",
+          "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+        },
+        {
+          "name": "MongoDB",
+          "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
+        },
+        {
+          "name": "Render",
+          "logo": "https://cdn.simpleicons.org/render/0f172a",
+          "invertDark": true
+        }
+      ]
+    }
+  ],
   "projects": [
-
-  {
-    "title": "Resume",
-    "image": "assets/images/resume.png",
-    "link": "https://github.com/Rakesh-Kumar2006/Resume",
-    "live": "https://rakeshk-resume.vercel.app/"
-  },
-
-  {
-    "title": "Portfolio Website",
-    "image": "assets/images/portfolio.png",
-    "link": "https://github.com/Rakesh-Kumar2006/Portfolio",
-    "live": "https://rakeshk-portfolio.vercel.app/"
-  },
-
-  {
-    "title": "A-1 Tailor Website",
-    "image": "assets/images/A1-Tailor.png",
-    "link": "https://github.com/Rakesh-Kumar2006/A1-Tailor",
-    "live": "https://a1-tailor.vercel.app/index.html"
-  },
-
-  {
-    "title": "QuickBite Website",
-    "image": "assets/images/quickbite.png",
-    "link": "https://github.com/Rakesh-Kumar2006/quickbites"
-  },
-
-  {
-    "title": "Smart Invoice Management",
-    "image": "assets/images/invoice.png",
-    "link": "https://github.com/Rakesh-Kumar2006/Invoice-frontend",
-    "live": "https://invoice-frontend-lemon.vercel.app/"
-  },
-
-  {
-    "title": "Freshify Website",
-    "image": "assets/images/Freshify.png",
-    "link": "https://github.com/Rakesh-Kumar2006/Freshify"
-  }
-
-],
-
+    {
+      "title": "A-1 Tailor Website",
+      "category": "BUSINESS WEBSITE",
+      "description": "A multi-page responsive website for a local tailoring studio featuring custom service showcases and a WhatsApp-connected online stitching enquiry form.",
+      "tags": ["HTML5", "CSS3", "Bootstrap 5", "JavaScript"],
+      "image": "assets/images/A1-Tailor.png",
+      "link": "https://github.com/Rakesh-Kumar2006/A1-Tailor",
+      "live": "https://a1-tailor.vercel.app/index.html"
+    },
+    {
+      "title": "Smart Invoice Management",
+      "category": "FULL-STACK WEB APP",
+      "description": "A web application for generating, managing, and printing client invoices with a Node.js backend and a clean responsive frontend.",
+      "tags": ["JavaScript", "Node.js", "REST API"],
+      "image": "assets/images/invoice.png",
+      "link": "https://github.com/Rakesh-Kumar2006/Invoice-frontend",
+      "live": "https://invoice-frontend-lemon.vercel.app/"
+    },
+    {
+      "title": "Portfolio Website",
+      "category": "PERSONAL BRAND",
+      "description": "My personal developer portfolio showcasing projects, technical skills, dark/light theme switching, and JSON-driven dynamic content.",
+      "tags": ["HTML5", "CSS3", "JavaScript", "Bootstrap 5"],
+      "image": "assets/images/portfolio.png",
+      "link": "https://github.com/Rakesh-Kumar2006/Portfolio",
+      "live": "https://rakeshk-portfolio.vercel.app/"
+    },
+    {
+      "title": "QuickBite Website",
+      "category": "FOOD DELIVERY APP",
+      "description": "A dynamic food ordering web application built with PHP and MySQL featuring menu browsing, cart management, and order handling.",
+      "tags": ["PHP", "MySQL", "Bootstrap 5"],
+      "image": "assets/images/quickbite.png",
+      "link": "https://github.com/Rakesh-Kumar2006/quickbites"
+    },
+    {
+      "title": "Freshify Website",
+      "category": "E-COMMERCE UI",
+      "description": "A modern online grocery store interface designed for smooth product discovery and clean mobile-first responsiveness.",
+      "tags": ["HTML5", "CSS3", "JavaScript"],
+      "image": "assets/images/Freshify.png",
+      "link": "https://github.com/Rakesh-Kumar2006/Freshify"
+    },
+    {
+      "title": "Digital Resume",
+      "category": "WEB RESUME",
+      "description": "A clean, print-ready online resume designed for quick readability by recruiters and instant PDF export.",
+      "tags": ["HTML5", "CSS3", "Responsive"],
+      "image": "assets/images/resume.png",
+      "link": "https://github.com/Rakesh-Kumar2006/Resume",
+      "live": "https://rakeshk-resume.vercel.app/"
+    }
+  ],
   "socialLinks": {
-
-    "github": "https://github.com/",
-
-    "linkedin": "https://linkedin.com/",
-
-    "instagram": "https://instagram.com/"
+    "github": "https://github.com/Rakesh-Kumar2006",
+    "linkedin": "https://www.linkedin.com/in/rakesh-kumar-mahto-542154376",
+    "resume": "https://rakeshk-resume.vercel.app/"
   },
-
   "contact": {
-
     "email": "mahtorakeshkumar926@gmail.com",
-
     "phone": "+91 9409433664",
-
     "location": "Jamnagar, Gujarat, India"
   }
-
 }

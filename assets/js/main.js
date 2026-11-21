@@ -1,678 +1,301 @@
 // ===============================
 // FETCH SITE DATA
 // ===============================
+let contactEmailAddress = "mahtorakeshkumar926@gmail.com";
 
 fetch("assets/data/site.json")
   .then((response) => response.json())
-
   .then((data) => {
+    // Brand & Hero
+    if (data.shortName) document.getElementById("brandName").innerText = data.shortName;
+    if (data.availability) document.getElementById("availabilityText").innerText = data.availability;
+    document.getElementById("heroDesc").innerText = data.description;
 
-    // ===============================
-    // HERO SECTION
-    // ===============================
+    // Contact Details
+    contactEmailAddress = data.contact.email;
+    document.getElementById("contactEmail").innerHTML = `<i class="bi bi-envelope"></i> <span>${data.contact.email}</span>`;
+    document.getElementById("contactPhone").innerHTML = `<i class="bi bi-telephone"></i> <span>${data.contact.phone}</span>`;
+    document.getElementById("contactlocation").innerHTML = `<i class="bi bi-geo-alt"></i> <span>${data.contact.location}</span>`;
 
-    document.getElementById("heroName").innerText =
-      data.name;
+    if (data.socialLinks?.github) {
+      document.getElementById("githubHeaderLink").href = data.socialLinks.github;
+    }
+    if (data.socialLinks?.resume) {
+      document.getElementById("resumeBtn").href = data.socialLinks.resume;
+    }
 
-    document.getElementById("heroDesc").innerText =
-      data.description;
-
-    // ===============================
-    // TYPING EFFECT
-    // ===============================
-
-    startTypingEffect(data.typingTexts);
-
-// ===============================
-// CONTACT SECTION
-// ===============================
-
-document.getElementById("contactEmail").innerHTML =
-  `
-  <i class="bi bi-envelope-fill"></i>
-  ${data.contact.email}
-  `;
-
-
-// Phone Number
-
-document.getElementById("contactPhone").innerHTML =
-  `
-  <i class="bi bi-telephone-fill"></i>
-  ${data.contact.phone}
-  `;
-
-
-// Location
-
-document.getElementById("contactlocation").innerHTML =
-  `
-  <i class="bi bi-geo-alt-fill"></i>
-  ${data.contact.location}
-  `;
-
-    // ===============================
-    // SOCIAL LINKS
-    // ===============================
-
-    const socialIcons =
-      document.querySelector(".social-icons");
-
-    socialIcons.innerHTML = `
-
-      <a
-        href="${data.socialLinks.github}"
-        target="_blank"
-      >
-        <i class="bi bi-github"></i>
-      </a>
-
-      <a
-        href="${data.socialLinks.linkedin}"
-        target="_blank"
-      >
-        <i class="bi bi-linkedin"></i>
-      </a>
-
-      <a
-        href="${data.socialLinks.instagram}"
-        target="_blank"
-      >
-        <i class="bi bi-instagram"></i>
-      </a>
-
-    `;
-
-    // ===============================
-    // LOAD DATA
-    // ===============================
-
+    // Load Sections
     loadExpertise(data.expertise);
-
     loadSkills(data.skills);
-
+    loadTools(data.tools);
     loadProjects(data.projects);
-
   })
-
   .catch((error) => {
-
-    console.log(
-      "JSON Fetch Error:",
-      error
-    );
-
+    console.error("JSON Fetch Error:", error);
   });
 
 // ===============================
 // LOAD EXPERTISE
 // ===============================
-
 function loadExpertise(expertise) {
-
   let output = "";
 
   expertise.forEach((item, index) => {
-
+    const num = String(index + 1).padStart(2, "0");
     output += `
-
-      <div
-        class="col-md-6 col-lg-4"
-        data-aos="fade-up"
-        data-aos-delay="${index * 100}"
-      >
-
-        <div class="glass-card text-center h-100">
-
-          <i
-            class="bi ${item.icon} skill-icon"
-          ></i>
-
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 100}">
+        <div class="surface-card">
+          <div class="expertise-top">
+            <div class="expertise-icon-box">
+              <i class="bi ${item.icon}"></i>
+            </div>
+            <span class="card-index">${num}</span>
+          </div>
           <h4>${item.title}</h4>
-
           <p>${item.description}</p>
-
         </div>
-
       </div>
-
     `;
-
   });
 
-  document.getElementById(
-    "expertiseContainer"
-  ).innerHTML = output;
-
+  document.getElementById("expertiseContainer").innerHTML = output;
 }
 
 // ===============================
 // LOAD SKILLS
 // ===============================
-
 function loadSkills(skills) {
+  const categoryTitles = {
+    frontend: "Frontend",
+    frameworks: "Frameworks & Libraries",
+    backend: "Backend",
+    database: "Database"
+  };
 
   let output = "";
 
-  const skillCategories = {
-
-    frontend: {
-      title: "Frontend",
-      icon: "bi-code-slash"
-    },
-
-    frameworks: {
-      title: "Frameworks",
-      icon: "bi-bootstrap"
-    },
-
-    backend: {
-      title: "Backend",
-      icon: "bi-server"
-    },
-
-    database: {
-      title: "Database",
-      icon: "bi-database"
-    }
-
-  };
-
-  Object.keys(skills).forEach(category => {
-
+  Object.keys(skills).forEach((category, index) => {
+    const title = categoryTitles[category] || category;
     output += `
-
-      <div class="col-md-6">
-
-        <div class="skill-box">
-
-          <div class="skill-heading">
-
-            <i class="bi ${skillCategories[category].icon}"></i>
-
-            <h4>
-              ${skillCategories[category].title}
-            </h4>
-
-          </div>
-
-          <div class="skill-tags">
-
-            ${skills[category].map(skill => `
-
-              <span class="skill-tag">
-
-                ${skill}
-
-              </span>
-
-            `).join("")}
-
-          </div>
-
+      <div class="skill-group-card" data-aos="fade-up" data-aos-delay="${index * 80}">
+        <h3 class="skill-group-title">${title}</h3>
+        <div class="skill-tags">
+          ${skills[category].map((skill) => `<span class="skill-tag">${skill}</span>`).join("")}
         </div>
-
       </div>
-
     `;
-
   });
 
-  document.getElementById("skillsContainer").innerHTML = `
+  document.getElementById("skillsContainer").innerHTML = output;
+}
 
-    <div class="row g-4">
+// ===============================
+// LOAD TOOLS
+// ===============================
+function loadTools(tools) {
+  if (!tools) return;
 
-      ${output}
+  let totalTools = 0;
+  let output = "";
 
-    </div>
+  tools.forEach((group, index) => {
+    totalTools += group.items.length;
 
-  `;
+    const itemsHtml = group.items
+      .map(
+        (tool) => `
+        <div class="tool-item-row">
+          <span class="tool-badge">
+            <img
+              src="${tool.logo}"
+              alt="${tool.name} logo"
+              class="tool-logo ${tool.invertDark ? "invert-on-dark" : ""}"
+              loading="lazy"
+            >
+          </span>
+          <span class="tool-name">${tool.name}</span>
+        </div>
+      `
+      )
+      .join("");
 
+    output += `
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 100}">
+        <div class="surface-card">
+          <h4 class="mb-4">${group.category}</h4>
+          <div>${itemsHtml}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById("toolsCount").innerText = totalTools;
+  document.getElementById("toolsContainer").innerHTML = output;
 }
 
 // ===============================
 // LOAD PROJECTS
 // ===============================
-
 function loadProjects(projects) {
-
   let output = "";
 
   projects.forEach((project, index) => {
+    const num = String(index + 1).padStart(2, "0");
+    const tagsHtml = (project.tags || [])
+      .map((tag) => `<span class="project-tag">${tag}</span>`)
+      .join("");
 
     output += `
-
-      <div
-        class="col-md-6 col-lg-4 project-card"
-        data-aos="zoom-in"
-        data-aos-delay="${index * 100}"
-      >
-
-        <div class="glass-card h-100">
-
-          <img
-            src="${project.image}"
-            class="img-fluid w-100"
-            alt="${project.title}"
-          >
-
-          <div class="mt-4">
-
-            <h4>${project.title}</h4>
-
-            <!-- GitHub Button -->
-
-            <a
-              href="${project.link}"
-              target="_blank"
-              class="btn btn-primary custom-btn mt-3 me-2"
-            >
-              <i class="bi bi-github me-2"></i>
-              GitHub
-            </a>
-
-            <!-- Live Website Button -->
-
-            ${
-              project.live
-                ? `
-            <a
-              href="${project.live}"
-              target="_blank"
-              class="btn btn-success custom-btn mt-3"
-            >
-              <i class="bi bi-box-arrow-up-right me-2"></i>
-              Live Demo
-            </a>
-            `
-                : ""
-            }
-
+      <div class="project-row-card" data-aos="fade-up" data-aos-delay="${index * 80}">
+        <div class="row g-0 align-items-stretch">
+          <div class="col-lg-6">
+            <div class="project-media-wrap">
+              <span class="project-index-badge">${num}</span>
+              <img
+                src="${project.image}"
+                alt="${project.title}"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x520/13141c/8b7cf6?text=${encodeURIComponent(project.title)}';"
+              >
+            </div>
           </div>
-
+          <div class="col-lg-6">
+            <div class="project-content">
+              <span class="project-category">${project.category || "WEB PROJECT"}</span>
+              <h3 class="project-title">${project.title}</h3>
+              <p class="project-desc">${project.description || ""}</p>
+              <div class="project-tags">${tagsHtml}</div>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="${project.link}" target="_blank" class="btn-project-github">
+                  <i class="bi bi-github"></i> GitHub
+                </a>
+                ${
+                  project.live
+                    ? `<a href="${project.live}" target="_blank" class="btn-project-live">
+                        Live website <i class="bi bi-box-arrow-up-right"></i>
+                      </a>`
+                    : ""
+                }
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
-
     `;
-
   });
 
-  document.getElementById(
-    "projectContainer"
-  ).innerHTML = output;
-
+  document.getElementById("projectContainer").innerHTML = output;
 }
 
 // ===============================
-// TYPING EFFECT
+// ACTIVE NAVBAR LINK & PROGRESS BAR
 // ===============================
-
-function startTypingEffect(words) {
-
-  let i = 0;
-
-  let j = 0;
-
-  let currentWord = "";
-
-  let isDeleting = false;
-
-  function type() {
-
-    currentWord = words[i];
-
-    if (isDeleting) {
-
-      j--;
-
-    } else {
-
-      j++;
-
-    }
-
-    document.getElementById(
-      "typing"
-    ).innerHTML =
-      currentWord.substring(0, j);
-
-    if (
-      !isDeleting &&
-      j === currentWord.length
-    ) {
-
-      isDeleting = true;
-
-      setTimeout(type, 1000);
-
-      return;
-
-    }
-
-    if (
-      isDeleting &&
-      j === 0
-    ) {
-
-      isDeleting = false;
-
-      i++;
-
-      if (i === words.length) {
-
-        i = 0;
-
-      }
-
-    }
-
-    setTimeout(
-      type,
-      isDeleting ? 60 : 120
-    );
-
-  }
-
-  type();
-
-}
-
-// ===============================
-// ACTIVE NAVBAR LINK
-// ===============================
-
-const sections =
-  document.querySelectorAll("section");
-
-const navLinks =
-  document.querySelectorAll(".nav-link");
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link");
 
 window.addEventListener("scroll", () => {
-
   let current = "";
 
   sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 160;
+    const sectionHeight = section.clientHeight;
 
-    const sectionTop =
-      section.offsetTop - 150;
-
-    const sectionHeight =
-      section.clientHeight;
-
-    if (
-      pageYOffset >= sectionTop
-      &&
-      pageYOffset <
-      sectionTop + sectionHeight
-    ) {
-
-      current =
-        section.getAttribute("id");
-
+    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
     }
-
   });
 
   navLinks.forEach((link) => {
-
     link.classList.remove("active");
-
-    if (
-      link.getAttribute("href")
-      === `#${current}`
-    ) {
-
+    if (link.getAttribute("href") === `#${current}`) {
       link.classList.add("active");
-
     }
-
   });
 
-});
-
-// ===============================
-// NAVBAR BACKGROUND
-// ===============================
-
-window.addEventListener("scroll", () => {
-
-  const navbar =
-    document.querySelector(".custom-nav");
-
-  if (window.scrollY > 50) {
-
-    navbar.style.background =
-      "rgba(15, 23, 42, 0.9)";
-
-    navbar.style.backdropFilter =
-      "blur(15px)";
-
-  } else {
-
-    navbar.style.background =
-      "rgba(255,255,255,0.08)";
-
-  }
-
-});
-
-// ===============================
-// SCROLL PROGRESS BAR
-// ===============================
-
-window.addEventListener("scroll", () => {
-
-  let scrollTop =
-    document.documentElement.scrollTop;
-
-  let scrollHeight =
-    document.documentElement.scrollHeight -
-    document.documentElement.clientHeight;
-
-  let progress =
-    (scrollTop / scrollHeight) * 100;
-
-  document.getElementById(
-    "progressBar"
-  ).style.width =
-    progress + "%";
-
+  // Progress bar
+  const scrollTop = document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = (scrollTop / scrollHeight) * 100;
+  document.getElementById("progressBar").style.width = `${progress}%`;
 });
 
 // ===============================
 // DARK / LIGHT MODE
 // ===============================
+const toggleBtn = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
 
-const toggleBtn =
-  document.getElementById("themeToggle");
+function updateThemeIcon() {
+  if (document.body.classList.contains("light-mode")) {
+    themeIcon.className = "bi bi-moon-stars";
+  } else {
+    themeIcon.className = "bi bi-sun";
+  }
+}
 
 toggleBtn.addEventListener("click", () => {
-
-  document.body.classList.toggle(
-    "light-mode"
-  );
-
-  localStorage.setItem(
-
-    "theme",
-
-    document.body.classList.contains(
-      "light-mode"
-    )
-      ? "light"
-      : "dark"
-
-  );
-
+  document.body.classList.toggle("light-mode");
+  localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+  updateThemeIcon();
 });
 
-// Load Saved Theme
-
-window.onload = () => {
-
-  let theme =
-    localStorage.getItem("theme");
-
-  if (theme === "light") {
-
-    document.body.classList.add(
-      "light-mode"
-    );
-
-  }
-
-};
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-mode");
+}
+updateThemeIcon();
 
 // ===============================
 // SCROLL TO TOP BUTTON
 // ===============================
-
-const scrollBtn =
-  document.createElement("button");
-
-scrollBtn.innerHTML =
-  '<i class="bi bi-arrow-up"></i>';
-
-scrollBtn.classList.add(
-  "scroll-top-btn"
-);
-
+const scrollBtn = document.createElement("button");
+scrollBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
+scrollBtn.classList.add("scroll-top-btn");
+scrollBtn.setAttribute("aria-label", "Scroll to top");
 document.body.appendChild(scrollBtn);
 
-// Button Styling
-
-scrollBtn.style.position = "fixed";
-scrollBtn.style.right = "20px";
-scrollBtn.style.bottom = "20px";
-scrollBtn.style.width = "50px";
-scrollBtn.style.height = "50px";
-scrollBtn.style.borderRadius = "50%";
-scrollBtn.style.border = "none";
-scrollBtn.style.background = "#38bdf8";
-scrollBtn.style.color = "#fff";
-scrollBtn.style.fontSize = "20px";
-scrollBtn.style.cursor = "pointer";
-scrollBtn.style.display = "none";
-scrollBtn.style.zIndex = "999";
-
-// Show Button
-
 window.addEventListener("scroll", () => {
-
-  if (window.scrollY > 300) {
-
-    scrollBtn.style.display =
-      "block";
-
-  } else {
-
-    scrollBtn.style.display =
-      "none";
-
-  }
-
+  scrollBtn.style.display = window.scrollY > 350 ? "flex" : "none";
 });
 
-// Scroll To Top
-
 scrollBtn.addEventListener("click", () => {
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior: "smooth"
-
-  });
-
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 // ===============================
 // MOBILE NAVBAR AUTO CLOSE
 // ===============================
-
-const navItems =
-  document.querySelectorAll(".nav-link");
-
-const navbarCollapse =
-  document.querySelector(
-    ".navbar-collapse"
-  );
-
-navItems.forEach((item) => {
-
+const navbarCollapse = document.querySelector(".navbar-collapse");
+navLinks.forEach((item) => {
   item.addEventListener("click", () => {
-
-    if (
-      navbarCollapse.classList.contains(
-        "show"
-      )
-    ) {
-
-      new bootstrap.Collapse(
-        navbarCollapse
-      ).hide();
-
+    if (navbarCollapse.classList.contains("show")) {
+      new bootstrap.Collapse(navbarCollapse).hide();
     }
-
   });
-
 });
 
 // ===============================
-// EMAIL BUTTON
+// EMAIL BUTTON (FIXED ADDRESS)
 // ===============================
-
-const emailBtn =
-  document.getElementById("emailBtn");
-
-emailBtn.addEventListener("click", function (e) {
-
+document.getElementById("emailBtn").addEventListener("click", function (e) {
   e.preventDefault();
-
-  const isMobile =
-    /Android|iPhone|iPad|iPod/i.test(
-      navigator.userAgent
-    );
-
-  // Mobile → Open Mail App
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   if (isMobile) {
-
-    window.location.href =
-      "mailto:mahtorakeshkumar926@gmail.com?subject=Portfolio Inquiry&body=Hello Rakesh,%0A%0AI want to connect with you.";
-
-  }
-
-  // Laptop/Desktop → Open Gmail in Browser
-
-  else {
-
+    window.location.href = `mailto:${contactEmailAddress}?subject=Portfolio%20Inquiry&body=Hello%20Rakesh,%0A%0AI%20want%20to%20connect%20with%20you.`;
+  } else {
     window.open(
-      "https://mail.google.com/mail/?view=cm&fs=1&to=yourmail@example.com&su=Portfolio%20Inquiry&body=Hello%20Rakesh,%0A%0AI%20want%20to%20connect%20with%20you.",
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactEmailAddress)}&su=Portfolio%20Inquiry&body=Hello%20Rakesh,%0A%0AI%20want%20to%20connect%20with%20you.`,
       "_blank"
     );
-
   }
-
 });
 
 // ===============================
 // LOADER
 // ===============================
-
 window.addEventListener("load", () => {
-
-  const loader =
-    document.getElementById("loader");
-
+  const loader = document.getElementById("loader");
   loader.style.opacity = "0";
-
   setTimeout(() => {
-
     loader.style.display = "none";
-
-  }, 500);
-
+  }, 450);
 });
