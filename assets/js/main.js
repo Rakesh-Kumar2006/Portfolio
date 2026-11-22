@@ -3,19 +3,28 @@
 // ===============================
 let contactEmailAddress = "mahtorakeshkumar926@gmail.com";
 
+function initAOS() {
+  if (window.AOS) {
+    AOS.init({ duration: 600, once: true, offset: 40 });
+    AOS.refreshHard();
+  }
+}
+
 fetch("assets/data/site.json")
   .then((response) => response.json())
   .then((data) => {
     // Brand & Hero
     if (data.shortName) document.getElementById("brandName").innerText = data.shortName;
     if (data.availability) document.getElementById("availabilityText").innerText = data.availability;
-    document.getElementById("heroDesc").innerText = data.description;
+    if (data.description) document.getElementById("heroDesc").innerText = data.description;
 
     // Contact Details
-    contactEmailAddress = data.contact.email;
-    document.getElementById("contactEmail").innerHTML = `<i class="bi bi-envelope"></i> <span>${data.contact.email}</span>`;
-    document.getElementById("contactPhone").innerHTML = `<i class="bi bi-telephone"></i> <span>${data.contact.phone}</span>`;
-    document.getElementById("contactlocation").innerHTML = `<i class="bi bi-geo-alt"></i> <span>${data.contact.location}</span>`;
+    if (data.contact) {
+      contactEmailAddress = data.contact.email;
+      document.getElementById("contactEmail").innerHTML = `<i class="bi bi-envelope"></i> <span>${data.contact.email}</span>`;
+      document.getElementById("contactPhone").innerHTML = `<i class="bi bi-telephone"></i> <span>${data.contact.phone}</span>`;
+      document.getElementById("contactlocation").innerHTML = `<i class="bi bi-geo-alt"></i> <span>${data.contact.location}</span>`;
+    }
 
     if (data.socialLinks?.github) {
       document.getElementById("githubHeaderLink").href = data.socialLinks.github;
@@ -29,21 +38,29 @@ fetch("assets/data/site.json")
     loadSkills(data.skills);
     loadTools(data.tools);
     loadProjects(data.projects);
+
+    // Initialize & refresh AOS for dynamically injected elements
+    initAOS();
   })
   .catch((error) => {
     console.error("JSON Fetch Error:", error);
   });
 
+// Fallback in case AOS script finishes loading after JSON fetch
+window.addEventListener("load", initAOS);
+
 // ===============================
 // LOAD EXPERTISE
 // ===============================
 function loadExpertise(expertise) {
+  if (!expertise) return;
+
   let output = "";
 
   expertise.forEach((item, index) => {
     const num = String(index + 1).padStart(2, "0");
     output += `
-      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 100}">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 80}">
         <div class="surface-card">
           <div class="expertise-top">
             <div class="expertise-icon-box">
@@ -65,6 +82,8 @@ function loadExpertise(expertise) {
 // LOAD SKILLS
 // ===============================
 function loadSkills(skills) {
+  if (!skills) return;
+
   const categoryTitles = {
     frontend: "Frontend",
     frameworks: "Frameworks & Libraries",
@@ -77,7 +96,7 @@ function loadSkills(skills) {
   Object.keys(skills).forEach((category, index) => {
     const title = categoryTitles[category] || category;
     output += `
-      <div class="skill-group-card" data-aos="fade-up" data-aos-delay="${index * 80}">
+      <div class="skill-group-card" data-aos="fade-up" data-aos-delay="${index * 60}">
         <h3 class="skill-group-title">${title}</h3>
         <div class="skill-tags">
           ${skills[category].map((skill) => `<span class="skill-tag">${skill}</span>`).join("")}
@@ -109,8 +128,11 @@ function loadTools(tools) {
             <img
               src="${tool.logo}"
               alt="${tool.name} logo"
+              width="22"
+              height="22"
               class="tool-logo ${tool.invertDark ? "invert-on-dark" : ""}"
               loading="lazy"
+              decoding="async"
             >
           </span>
           <span class="tool-name">${tool.name}</span>
@@ -120,7 +142,7 @@ function loadTools(tools) {
       .join("");
 
     output += `
-      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 100}">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 80}">
         <div class="surface-card">
           <h4 class="mb-4">${group.category}</h4>
           <div>${itemsHtml}</div>
@@ -137,6 +159,8 @@ function loadTools(tools) {
 // LOAD PROJECTS
 // ===============================
 function loadProjects(projects) {
+  if (!projects) return;
+
   let output = "";
 
   projects.forEach((project, index) => {
@@ -146,7 +170,7 @@ function loadProjects(projects) {
       .join("");
 
     output += `
-      <div class="project-row-card" data-aos="fade-up" data-aos-delay="${index * 80}">
+      <div class="project-row-card" data-aos="fade-up" data-aos-delay="${index * 60}">
         <div class="row g-0 align-items-stretch">
           <div class="col-lg-6">
             <div class="project-media-wrap">
@@ -154,6 +178,8 @@ function loadProjects(projects) {
               <img
                 src="${project.image}"
                 alt="${project.title}"
+                loading="lazy"
+                decoding="async"
                 onerror="this.onerror=null; this.src='https://placehold.co/800x520/13141c/8b7cf6?text=${encodeURIComponent(project.title)}';"
               >
             </div>
@@ -165,12 +191,12 @@ function loadProjects(projects) {
               <p class="project-desc">${project.description || ""}</p>
               <div class="project-tags">${tagsHtml}</div>
               <div class="d-flex flex-wrap gap-2">
-                <a href="${project.link}" target="_blank" class="btn-project-github">
+                <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="btn-project-github">
                   <i class="bi bi-github"></i> GitHub
                 </a>
                 ${
                   project.live
-                    ? `<a href="${project.live}" target="_blank" class="btn-project-live">
+                    ? `<a href="${project.live}" target="_blank" rel="noopener noreferrer" class="btn-project-live">
                         Live website <i class="bi bi-box-arrow-up-right"></i>
                       </a>`
                     : ""
@@ -187,36 +213,62 @@ function loadProjects(projects) {
 }
 
 // ===============================
-// ACTIVE NAVBAR LINK & PROGRESS BAR
+// SCROLL TO TOP BUTTON
+// ===============================
+const scrollBtn = document.createElement("button");
+scrollBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
+scrollBtn.classList.add("scroll-top-btn");
+scrollBtn.setAttribute("aria-label", "Scroll to top");
+document.body.appendChild(scrollBtn);
+
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ===============================
+// SMOOTH THROTTLED SCROLL HANDLER
 // ===============================
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-link");
+const progressBar = document.getElementById("progressBar");
+let scrollTicking = false;
 
-window.addEventListener("scroll", () => {
-  let current = "";
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 160;
-    const sectionHeight = section.clientHeight;
+        // Active navbar link
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 160;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute("id");
+          }
+        });
 
-    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-      current = section.getAttribute("id");
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+        });
+
+        // Progress bar
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = scrollHeight > 0 ? (scrollY / scrollHeight) * 100 : 0;
+        if (progressBar) progressBar.style.width = `${progress}%`;
+
+        // Scroll-to-top button visibility
+        scrollBtn.style.display = scrollY > 350 ? "flex" : "none";
+
+        scrollTicking = false;
+      });
+      scrollTicking = true;
     }
-  });
-
-  navLinks.forEach((link) => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
-    }
-  });
-
-  // Progress bar
-  const scrollTop = document.documentElement.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const progress = (scrollTop / scrollHeight) * 100;
-  document.getElementById("progressBar").style.width = `${progress}%`;
-});
+  },
+  { passive: true }
+);
 
 // ===============================
 // DARK / LIGHT MODE
@@ -244,36 +296,19 @@ if (localStorage.getItem("theme") === "light") {
 updateThemeIcon();
 
 // ===============================
-// SCROLL TO TOP BUTTON
-// ===============================
-const scrollBtn = document.createElement("button");
-scrollBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
-scrollBtn.classList.add("scroll-top-btn");
-scrollBtn.setAttribute("aria-label", "Scroll to top");
-document.body.appendChild(scrollBtn);
-
-window.addEventListener("scroll", () => {
-  scrollBtn.style.display = window.scrollY > 350 ? "flex" : "none";
-});
-
-scrollBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-// ===============================
 // MOBILE NAVBAR AUTO CLOSE
 // ===============================
 const navbarCollapse = document.querySelector(".navbar-collapse");
 navLinks.forEach((item) => {
   item.addEventListener("click", () => {
-    if (navbarCollapse.classList.contains("show")) {
-      new bootstrap.Collapse(navbarCollapse).hide();
+    if (navbarCollapse && navbarCollapse.classList.contains("show")) {
+      bootstrap.Collapse.getOrCreateInstance(navbarCollapse).hide();
     }
   });
 });
 
 // ===============================
-// EMAIL BUTTON (FIXED ADDRESS)
+// EMAIL BUTTON
 // ===============================
 document.getElementById("emailBtn").addEventListener("click", function (e) {
   e.preventDefault();
@@ -284,18 +319,8 @@ document.getElementById("emailBtn").addEventListener("click", function (e) {
   } else {
     window.open(
       `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactEmailAddress)}&su=Portfolio%20Inquiry&body=Hello%20Rakesh,%0A%0AI%20want%20to%20connect%20with%20you.`,
-      "_blank"
+      "_blank",
+      "noopener,noreferrer"
     );
   }
-});
-
-// ===============================
-// LOADER
-// ===============================
-window.addEventListener("load", () => {
-  const loader = document.getElementById("loader");
-  loader.style.opacity = "0";
-  setTimeout(() => {
-    loader.style.display = "none";
-  }, 450);
 });
